@@ -4,7 +4,8 @@ import os
 
 app = Flask(__name__)
 
-openai.api_key = os.getenv("OPENAI_API_KEY")  # Pegando a chave da OpenAI do ambiente
+# Pegando a chave da OpenAI do ambiente
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route("/", methods=["GET"])
 def home():
@@ -32,11 +33,13 @@ def gerar_topicos():
 
         resposta = openai.ChatCompletion.create(
             model="gpt-4",
-            messages=[{"role": "system", "content": "Você é um especialista em criação de e-books."},
-                      {"role": "user", "content": prompt}]
+            messages=[
+                {"role": "system", "content": "Você é um especialista em criação de e-books."},
+                {"role": "user", "content": prompt}
+            ]
         )
 
-        return jsonify({"topicos": resposta["choices"][0]["message"]["content"]})
+        return jsonify({"topicos": resposta.choices[0].message.content})
 
     except Exception as e:
         return jsonify({"erro": str(e)}), 500
