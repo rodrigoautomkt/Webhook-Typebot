@@ -32,7 +32,7 @@ def gerar_topicos():
         """
 
         resposta = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="gpt-4-turbo",
             messages=[
                 {"role": "system", "content": "Você é um especialista em criação de e-books."},
                 {"role": "user", "content": prompt}
