@@ -39,7 +39,7 @@ def gerar_topicos():
             ]
         )
 
-        return jsonify({"topicos": resposta.choices[0].message.content})
+        return jsonify({"topicos": resposta["choices"][0]["message"]["content"]})
 
     except Exception as e:
         return jsonify({"erro": str(e)}), 500
